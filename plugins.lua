@@ -65,6 +65,9 @@ local plugins = {
       },
     },
   },
+  {
+    "tpope/vim-fugitive",
+  },
 }
 
 return plugins
