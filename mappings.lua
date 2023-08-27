@@ -16,8 +16,18 @@ M.custommap = {
     ["<C-Del>"] = { "<Esc>ldwi", "Delete a word forward" },
     ["<M-BS>"] = { "<C-w>", "Delete a word backward" },
     ["<C-d>"] = { "<Esc>Ypi", "Duplicate a line" },
-    ["<C-z>"] = { "<Esc>ui", "Undo" },
-    ["<C-y>"] = { "<Esc><C-r>i", "Redo" },
+    ["<C-z>"] = {
+      function()
+        vim.cmd "undo"
+      end,
+      "Undo",
+    },
+    ["<C-y>"] = {
+      function()
+        vim.cmd "redo"
+      end,
+      "Redo",
+    },
     ["<C-s>"] = {
       function()
         vim.cmd "w"
