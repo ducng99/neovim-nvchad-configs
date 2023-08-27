@@ -13,6 +13,8 @@ M.custommap = {
     ["<leader>sms"] = { "<cmd>SessionManager save_current_session<CR>", "Save current session" },
     ["<C-f>"] = { "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Find in file" },
     ["<C-A-f>"] = { "<cmd>Telescope find_files<CR>", "Find Files" },
+    ["<C-d>"] = { "<C-d>zz", "Move half page down", opts = { noremap = true } },
+    ["<C-u>"] = { "<C-u>zz", "Move half page up", opts = { noremap = true } },
   },
 
   i = {

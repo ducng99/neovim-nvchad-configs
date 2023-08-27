@@ -57,6 +57,14 @@ local plugins = {
       },
     },
   },
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      filters = {
+        custom = { "^\\.git$" },
+      },
+    },
+  },
 }
 
 return plugins
