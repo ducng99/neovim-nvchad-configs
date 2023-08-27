@@ -1,12 +1,5 @@
 local M = {}
 
-M.disabled = {
-  v = {
-    ["<C-Down>"] = {},
-    ["<C-Up>"] = {},
-  },
-}
-
 M.custommap = {
   n = {
     ["<leader>sml"] = { "<cmd>SessionManager load_session<CR>", "Select a session" },
@@ -15,14 +8,22 @@ M.custommap = {
     ["<C-A-f>"] = { "<cmd>Telescope find_files<CR>", "Find Files" },
     ["<C-d>"] = { "<C-d>zz", "Move half page down", opts = { noremap = true } },
     ["<C-u>"] = { "<C-u>zz", "Move half page up", opts = { noremap = true } },
+    ["<S-Down>"] = { "v<Down>" },
+    ["<S-Up>"] = { "v<Up>" },
   },
 
   i = {
     ["<C-Del>"] = { "<Esc>ldwi", "Delete a word forward" },
-    ["<M-BS>"] = { "<Esc>ldbi", "Delete a word backward" },
+    ["<M-BS>"] = { "<C-w>", "Delete a word backward" },
     ["<C-d>"] = { "<Esc>Ypi", "Duplicate a line" },
     ["<C-z>"] = { "<Esc>ui", "Undo" },
     ["<C-y>"] = { "<Esc><C-r>i", "Redo" },
+    ["<C-s>"] = {
+      function()
+        vim.cmd "w"
+      end,
+      "Save file",
+    },
     ["<S-Down>"] = { "<Esc>lv<Down>", "Select down" },
     ["<S-Up>"] = { "<Esc>lv<Up>", "Select up" },
     ["<S-Left>"] = { "<Esc>v", "Select left" },
@@ -39,6 +40,11 @@ M.custommap = {
       end,
       "Move to first non-blank character",
     },
+  },
+
+  v = {
+    ["<S-Down>"] = { "<Down>" },
+    ["<S-Up>"] = { "<Up>" },
   },
 }
 
