@@ -1,26 +1,42 @@
 local plugins = {
-  {
-    "github/copilot.vim",
-    lazy = false
-  },
+
   {
     "Shatur/neovim-session-manager",
-    lazy = false
+    lazy = false,
   },
   {
     "neovim/nvim-lspconfig",
 
     dependencies = {
-      "jose-elias-alvarez/null-ls.nvim",
-      opts = function()
-        return require "custom.configs.null-ls"
-      end
+      {
+        "jose-elias-alvarez/null-ls.nvim",
+        opts = function()
+          return require "custom.configs.null-ls"
+        end,
+      },
+      {
+        "github/copilot.vim",
+      },
     },
 
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
-    end
+    end,
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = {
+      defaults = {
+        mappings = {
+          i = {
+            ["<esc>"] = function(...)
+              require("telescope.actions").close(...)
+            end,
+          },
+        },
+      },
+    },
   },
   {
     "williamboman/mason.nvim",
@@ -35,12 +51,12 @@ local plugins = {
         "gofumpt",
         "goimports-reviser",
         "standardjs",
-        "ts-standdard",
+        "ts-standard",
         "stylua",
-        "eslint_d"
-      }
-    }
-  }
+        "eslint_d",
+      },
+    },
+  },
 }
 
 return plugins
