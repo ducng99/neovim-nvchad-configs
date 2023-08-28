@@ -55,6 +55,7 @@ M.custommap = {
   v = {
     ["<S-Down>"] = { "<Down>" },
     ["<S-Up>"] = { "<Up>" },
+    ["<C-h>"] = { 'y:%s/<C-r>"//gc<Left><Left><Left>' },
   },
 }
 

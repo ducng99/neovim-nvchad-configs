@@ -21,6 +21,7 @@ local sources = {
 
   -- formatting.prettier,
   formatting.stylua,
+  formatting.phpcsfixer,
 
   -- lint.shellcheck,
 }

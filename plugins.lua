@@ -54,6 +54,9 @@ local plugins = {
         "ts-standard",
         "stylua",
         "eslint_d",
+        "intelephense",
+        "php-cs-fixer",
+        "php-debug-adapter",
       },
     },
   },
@@ -68,6 +71,10 @@ local plugins = {
   {
     "tpope/vim-fugitive",
     cmd = { "G", "Git" },
+  },
+  {
+    "stevearc/dressing.nvim",
+    lazy = false,
   },
 }
 
