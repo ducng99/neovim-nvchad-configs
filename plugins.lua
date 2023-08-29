@@ -6,25 +6,35 @@ local plugins = {
   {
     "neovim/nvim-lspconfig",
 
-    dependencies = {
-      {
-        "jose-elias-alvarez/null-ls.nvim",
-        opts = function()
-          return require "custom.configs.null-ls"
-        end,
-      },
-      {
-        "github/copilot.vim",
-      },
-    },
-
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
     end,
   },
   {
+    "jose-elias-alvarez/null-ls.nvim",
+    event = "VeryLazy",
+    opts = function()
+      require "custom.configs.null-ls"
+    end,
+  },
+  {
+    "github/copilot.vim",
+    event = "InsertEnter",
+  },
+  {
     "nvim-telescope/telescope.nvim",
+    dependencies = {
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+      },
+    },
+    config = function(_, opts)
+      local telescope = require "telescope"
+      telescope.setup(opts)
+      telescope.load_extension "fzf"
+    end,
     opts = require "custom.configs.telescope",
   },
   {
@@ -45,7 +55,7 @@ local plugins = {
   },
   {
     "stevearc/dressing.nvim",
-    lazy = false,
+    event = "VeryLazy",
   },
 }
 

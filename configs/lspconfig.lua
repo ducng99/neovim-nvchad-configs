@@ -3,7 +3,7 @@ local on_attach = configs.on_attach
 local capabilities = configs.capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "cssls", "eslint", "gopls", "lua_ls", "svelte", "tsserver" }
+local servers = { "cssls", "eslint", "gopls", "svelte", "tsserver" }
 
 local get_intelephense_license = function()
   local f = assert(io.open(os.getenv "HOME" .. "/intelephense/license.txt", "rb"))
@@ -18,6 +18,20 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+
+lspconfig["lua_ls"].setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = {
+          "vim",
+        },
+      },
+    },
+  },
+}
 
 lspconfig["intelephense"].setup {
   on_attach = on_attach,
