@@ -1,5 +1,4 @@
 local plugins = {
-
   {
     "Shatur/neovim-session-manager",
     lazy = false,
@@ -26,39 +25,11 @@ local plugins = {
   },
   {
     "nvim-telescope/telescope.nvim",
-    opts = {
-      defaults = {
-        mappings = {
-          i = {
-            ["<esc>"] = function(...)
-              require("telescope.actions").close(...)
-            end,
-          },
-        },
-      },
-    },
+    opts = require "custom.configs.telescope",
   },
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "css-lsp",
-        "eslint-lsp",
-        "gopls",
-        "lua-language-server",
-        "svelte-language-server",
-        "typescript-language-server",
-        "gofumpt",
-        "goimports-reviser",
-        "standardjs",
-        "ts-standard",
-        "stylua",
-        "eslint_d",
-        "intelephense",
-        "php-cs-fixer",
-        "php-debug-adapter",
-      },
-    },
+    opts = require "custom.configs.mason",
   },
   {
     "nvim-tree/nvim-tree.lua",
