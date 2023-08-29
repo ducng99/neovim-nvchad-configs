@@ -55,7 +55,7 @@ local plugins = {
   },
   {
     "stevearc/dressing.nvim",
-    cmd = "Telescope",
+    event = "VeryLazy",
   },
 }
 
