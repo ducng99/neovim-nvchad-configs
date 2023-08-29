@@ -55,7 +55,12 @@ M.custommap = {
   v = {
     ["<S-Down>"] = { "<Down>" },
     ["<S-Up>"] = { "<Up>" },
-    ["<C-h>"] = { 'y:%s/<C-r>"//gc<Left><Left><Left>' },
+    ["<C-f>"] = {
+      'y<cmd>Telescope current_buffer_fuzzy_find<CR><C-r>"',
+      "Search with selected text",
+    },
+    ["<C-h>"] = { 'y:%s/<C-r>"//gc<Left><Left><Left>', "Search & Replace selected text" },
+    ["<C-d>"] = { "yp", "Duplicate selected text" },
   },
 }
 
