@@ -23,7 +23,7 @@ local sources = {
   formatting.stylua,
   formatting.phpcsfixer,
   formatting.yamlfmt,
-
+  formatting.markdownlint,
   -- lint.shellcheck,
 }
 
