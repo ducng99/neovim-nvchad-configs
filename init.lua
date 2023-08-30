@@ -1,8 +1,6 @@
 -- Checks if no_sync dir and no_sync/init exists
 -- If it does, it will load it
-if vim.fn.isdirectory "no_sync" and vim.fn.filereadable "no_sync/init" then
-  require "no_sync/init"
-end
+pcall(require, "no_sync/init")
 
 vim.opt.tabstop = 8
 vim.opt.shiftwidth = 4

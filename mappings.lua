@@ -1,5 +1,15 @@
 local M = {}
 
+local moveLineStart = function()
+  local col = vim.api.nvim_win_get_cursor(0)[2]
+
+  if col == 0 then
+    vim.cmd "normal! ^a"
+  else
+    vim.cmd "normal! 0i"
+  end
+end
+
 M.custommap = {
   n = {
     ["<leader>sml"] = { "<cmd>SessionManager load_session<CR>", "Select a session" },
@@ -38,18 +48,8 @@ M.custommap = {
     ["<S-Up>"] = { "<Esc>lv<Up>", "Select up" },
     ["<S-Left>"] = { "<Esc>v", "Select left" },
     ["<S-Right>"] = { "<Esc>lv", "Select right" },
-    ["<Home>"] = {
-      function()
-        local col = vim.api.nvim_win_get_cursor(0)[2]
-
-        if col == 0 then
-          vim.cmd "normal! ^a"
-        else
-          vim.cmd "normal! 0i"
-        end
-      end,
-      "Move to first non-blank character",
-    },
+    ["<Home>"] = { moveLineStart, "Move to first non-blank character" },
+    ["<C-a>"] = { moveLineStart, "Move to first non-blank character" },
   },
 
   v = {

@@ -57,6 +57,10 @@ local plugins = {
     "stevearc/dressing.nvim",
     event = "VeryLazy",
   },
+  {
+    "folke/neodev.nvim",
+    ft = "lua",
+  },
 }
 
 return plugins
