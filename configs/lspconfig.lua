@@ -3,7 +3,7 @@ local on_attach = configs.on_attach
 local capabilities = configs.capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "cssls", "eslint", "gopls", "svelte", "tsserver", "intelephense" }
+local servers = { "cssls", "eslint", "gopls", "svelte", "tsserver", "intelephense", "docker_compose_language_service", "dockerls" }
 
 local get_intelephense_license = function()
   local f = assert(io.open(os.getenv "HOME" .. "/intelephense/license.txt", "rb"))

@@ -13,8 +13,9 @@ local plugins = {
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
     event = "VeryLazy",
-    opts = function()
+    config = function()
       require "custom.configs.null-ls"
     end,
   },
@@ -23,7 +24,11 @@ local plugins = {
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
-      require("copilot").setup {}
+      require("copilot").setup {
+        suggestion = {
+          auto_trigger = true,
+        },
+      }
     end,
   },
   {
