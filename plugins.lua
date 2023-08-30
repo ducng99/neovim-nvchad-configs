@@ -24,17 +24,13 @@ local plugins = {
   },
   {
     "nvim-telescope/telescope.nvim",
+    branch = "0.1.x",
     dependencies = {
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
       },
     },
-    config = function(_, opts)
-      local telescope = require "telescope"
-      telescope.setup(opts)
-      telescope.load_extension "fzf"
-    end,
     opts = require "custom.configs.telescope",
   },
   {
