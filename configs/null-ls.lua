@@ -7,27 +7,32 @@ local sources = {
   formatting.gofumpt,
   formatting.goimports_reviser,
 
-  formatting.eslint_d,
-  -- formatting.standardts.with({
-  --   condition = function(utils)
-  --     return not utils.root_has_file(".eslintrc.json") and not utils.root_has_file(".eslintrc.js")
-  --   end
-  -- }),
-  -- formatting.standardjs.with({
-  --   condition = function(utils)
-  --     return not utils.root_has_file(".eslintrc.json") and not utils.root_has_file(".eslintrc.js")
-  --   end
-  -- }),
+  formatting.eslint_d.with {
+    runtime_condition = function()
+      return vim.fn.filereadable ".eslintrc.json" or vim.fn.filereadable ".eslintrc.js"
+    end,
+  },
+  formatting.standardts.with {
+    runtime_condition = function()
+      return not vim.fn.filereadable ".eslintrc.json" and not vim.fn.filereadable ".eslintrc.js"
+    end,
+  },
+  -- formatting.standardjs.with {
+  --   runtime_condition = function()
+  --     return not vim.fn.filereadable ".eslintrc.json" and not vim.fn.filereadable ".eslintrc.js"
+  --   end,
+  -- },
 
   -- formatting.prettier,
   formatting.stylua,
-  formatting.phpcsfixer,
+  formatting.phpcsfixer.with {
+    extra_args = { "--using-cache=no" },
+  },
   formatting.yamlfmt,
   formatting.markdownlint,
   -- lint.shellcheck,
 }
 
 null_ls.setup {
-  debug = true,
   sources = sources,
 }
