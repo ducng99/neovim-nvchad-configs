@@ -12,19 +12,25 @@ local plugins = {
   },
   {
     "neovim/nvim-lspconfig",
-    dependencies = { "jose-elias-alvarez/null-ls.nvim" },
+    dependencies = { "mhartington/formatter.nvim" },
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
     end,
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",
-    dependencies = "nvim-lua/plenary.nvim",
+    "mhartington/formatter.nvim",
     config = function()
-      require "custom.configs.null-ls"
+      require "custom.configs.formatter"
     end,
   },
+  -- {
+  --   "jose-elias-alvarez/null-ls.nvim",
+  --   dependencies = "nvim-lua/plenary.nvim",
+  --   config = function()
+  --     require "custom.configs.null-ls"
+  --   end,
+  -- },
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",

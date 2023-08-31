@@ -20,7 +20,7 @@ local normal_moveLineStart = function()
   end
 end
 
-function getVisualSelection()
+function GetVisualSelection()
   vim.cmd 'noau normal! "vy"'
   local text = vim.fn.getreg "v"
   vim.fn.setreg("v", {})
@@ -45,6 +45,7 @@ M.custommap = {
     ["<S-Up>"] = { "v<Up>" },
     ["<Home>"] = { normal_moveLineStart, "Move to first non-blank character" },
     ["<C-a>"] = { normal_moveLineStart, "Move to first non-blank character" },
+    ["<leader>fm"] = { "<cmd>:Format<CR>", "Format file" },
   },
 
   i = {
@@ -78,17 +79,12 @@ M.custommap = {
   },
 
   v = {
-    ["<leader>fm"] = {
-      function()
-        vim.lsp.buf.format()
-      end,
-      "Format selected text",
-    },
+    ["<leader>fm"] = { "<cmd>:Format<CR>", "Format file" },
     ["<S-Down>"] = { "<Down>" },
     ["<S-Up>"] = { "<Up>" },
     ["<C-f>"] = {
       function()
-        local text = getVisualSelection()
+        local text = GetVisualSelection()
         require("telescope.builtin").current_buffer_fuzzy_find { default_text = text }
       end,
       "Search with selected text",
