@@ -20,6 +20,19 @@ local normal_moveLineStart = function()
   end
 end
 
+function getVisualSelection()
+  vim.cmd 'noau normal! "vy"'
+  local text = vim.fn.getreg "v"
+  vim.fn.setreg("v", {})
+
+  text = string.gsub(text, "\n", "")
+  if #text > 0 then
+    return text
+  else
+    return ""
+  end
+end
+
 M.custommap = {
   n = {
     ["<leader>sml"] = { "<cmd>SessionManager load_session<CR>", "Select a session" },
@@ -65,13 +78,22 @@ M.custommap = {
   },
 
   v = {
+    ["<leader>fm"] = {
+      function()
+        vim.lsp.buf.format()
+      end,
+      "Format selected text",
+    },
     ["<S-Down>"] = { "<Down>" },
     ["<S-Up>"] = { "<Up>" },
     ["<C-f>"] = {
-      'y<cmd>Telescope current_buffer_fuzzy_find<CR><C-r>+',
+      function()
+        local text = getVisualSelection()
+        require("telescope.builtin").current_buffer_fuzzy_find { default_text = text }
+      end,
       "Search with selected text",
     },
-    ["<C-h>"] = { 'y:%s/<C-r>+//gc<Left><Left><Left>', "Search & Replace selected text" },
+    ["<C-h>"] = { "y:%s/<C-r>+//g<Left><Left><Left>", "Search & Replace selected text" },
     ["<C-d>"] = { "yp", "Duplicate selected text" },
   },
 }

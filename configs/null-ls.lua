@@ -17,11 +17,11 @@ local sources = {
       return not vim.fn.filereadable ".eslintrc.json" and not vim.fn.filereadable ".eslintrc.js"
     end,
   },
-  -- formatting.standardjs.with {
-  --   runtime_condition = function()
-  --     return not vim.fn.filereadable ".eslintrc.json" and not vim.fn.filereadable ".eslintrc.js"
-  --   end,
-  -- },
+  formatting.standardjs.with {
+    runtime_condition = function()
+      return not vim.fn.filereadable ".eslintrc.json" and not vim.fn.filereadable ".eslintrc.js"
+    end,
+  },
 
   -- formatting.prettier,
   formatting.stylua,
